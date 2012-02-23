@@ -10,7 +10,7 @@ For more information, see the documentation.
 Dependencies
 ------------
 
-This plugin has no required dependencies, bu becomes really awesome when used
+This plugin has no required dependencies, but becomes really awesome when used
 with rails.vim. It also makes the assumption that you're using iTerm on
 a Mac platform.
 

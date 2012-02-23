@@ -1,4 +1,5 @@
 " itermux.vim - Turbo Ruby tests with iTerm
+" Author:      Joshua Davey <http://joshuadavey.com/>
 " Author:      Stefano Verna <http://stefanoverna.com/>
 " Version:     1.0
 
@@ -74,6 +75,7 @@ function! Send_to_iTerm(command)
                   \ '-e "tell (first session whose name contains \"' . session . '\")"',
                   \ '-e "set AppleScript''s text item delimiters to \" \""',
                   \ '-e "write text (argv as text)"',
+                  \ '-e "set the name to \"' . session .  '\""',
                   \ '-e "end tell"',
                   \ '-e "end tell"',
                   \ '-e "end tell"',
