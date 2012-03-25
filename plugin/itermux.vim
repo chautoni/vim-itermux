@@ -70,15 +70,17 @@ function! Send_to_iTerm(command)
   endif
 
   let commands =  [ '-e "on run argv"',
-                  \ '-e "tell application \"' . app . '\""',
-                  \ '-e "tell the current terminal"',
-                  \ '-e "tell (first session whose name contains \"' . session . '\")"',
-                  \ '-e "set AppleScript''s text item delimiters to \" \""',
-                  \ '-e "write text (argv as text)"',
-                  \ '-e "set the name to \"' . session .  '\""',
-                  \ '-e "end tell"',
-                  \ '-e "end tell"',
-                  \ '-e "end tell"',
+                  \   '-e "tell application \"' . app . '\""',
+                  \     '-e "repeat with _terminal in terminals"',
+                  \       '-e "repeat with _session in (every session of _terminal whose name contains \"' . session . '\")"',
+                  \         '-e "tell the _session"',
+                  \           '-e "set AppleScript''s text item delimiters to \" \""',
+                  \           '-e "write text (argv as text)"',
+                  \           '-e "set the name to \"' . session .  '\""',
+                  \         '-e "end tell"',
+                  \       '-e "end repeat"',
+                  \     '-e "end repeat"',
+                  \   '-e "end tell"',
                   \ '-e "end run"' ]
 
   let complete_command = "osascript " . join(commands, ' ') . " " . a:command
